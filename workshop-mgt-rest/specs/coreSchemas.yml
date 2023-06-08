@@ -1,0 +1,29 @@
+Identity:
+  type: object
+  properties:
+    id:
+      type: string
+      uniqueItems: true
+      example: d815d301-8bae-4dd0-a292-56e0cb7509d6
+
+Audit:
+  allOf:
+    - $ref: "#/Identity"
+  type: object
+  properties:
+    createdAt:
+      type: string
+      format: date-time
+      example: 2017-07-21T17:32:28.000Z
+    updatedAt:
+      type: string
+      format: date-time
+      example: 2017-07-21T17:32:28.000Z
+    createdByUser:
+      type: string
+      uniqueItems: true
+      example: d815d301-8bae-4dd0-a292-56e0cb7509d6
+    modifiedByUser:
+      type: string
+      uniqueItems: true
+      example: d815d301-8bae-4dd0-a292-56e0cb7509d6

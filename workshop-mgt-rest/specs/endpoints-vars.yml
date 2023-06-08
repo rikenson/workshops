@@ -1,0 +1,81 @@
+#___________________________________________________________________________
+#1.Update Workshop
+put:
+  tags:
+    - workshop-endpoints
+  summary: Update a specific workshop by id.
+  operationId: updateWorkshop
+  security: [ ]
+  parameters:
+    - $ref: "./coreParams.yml#/token"
+    - $ref: "./coreParams.yml#/id"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./schemas.yml#/WorkshopRequest"
+  responses:
+    "200":
+      description: Found item structure.
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yml#/WorkshopResponse"
+    "400":
+      $ref: "./coreResponses.yml#/400APIError"
+    "409":
+      $ref: "./coreResponses.yml#/409APIError"
+    "500":
+      $ref: "./coreResponses.yml#/500APIError"
+
+# #___________________________________________________________________________
+#3.Delete Workshop
+delete:
+  tags:
+    - workshop-endpoints
+  summary: Delete a specific workshop by id.
+  operationId: deleteWorkshop
+  parameters:
+    - $ref: "./coreParams.yml#/token"
+    - $ref: "./coreParams.yml#/id"
+  responses:
+    "200":
+      $ref: "./coreResponses.yml#/200APIMessage"
+    "400":
+      $ref: "./coreResponses.yml#/400APIError"
+    "409":
+      $ref: "./coreResponses.yml#/409APIError"
+    "500":
+      $ref: "./coreResponses.yml#/500APIError"
+
+#___________________________________________________________________________
+#1.Update Workshop
+patch:
+  tags:
+    - workshop-endpoints
+  summary: add participants to workshop by id.
+  operationId: patchWorkshop
+  security: [ ]
+  parameters:
+    - $ref: "./coreParams.yml#/token"
+    - $ref: "./coreParams.yml#/id"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: "./schemas.yml#/ParticipantRequest"
+  responses:
+    "200":
+      description: Found item structure.
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yml#/WorkshopResponse"
+    "400":
+      $ref: "./coreResponses.yml#/400APIError"
+    "409":
+      $ref: "./coreResponses.yml#/409APIError"
+    "500":
+      $ref: "./coreResponses.yml#/500APIError"

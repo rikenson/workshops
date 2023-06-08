@@ -1,0 +1,58 @@
+#___________________________________________________________________________
+#1.Add brand workshop
+post:
+  tags:
+    - workshop-endpoints
+  summary: Register new workshop.
+  operationId: addWorkshop
+  description: Add a brand new workshop
+  parameters:
+    - $ref: "./coreParams.yml#/token"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "./schemas.yml#/WorkshopRequest"
+  responses:
+    "201":
+      description: Item created successfully.
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yml#/WorkshopResponse"
+    "400":
+      $ref: "./coreResponses.yml#/400APIError"
+    "409":
+      $ref: "./coreResponses.yml#/409APIError"
+    "500":
+      $ref: "./coreResponses.yml#/500APIError"
+
+#___________________________________________________________________________
+#4.Find page of workshop
+get:
+  tags:
+    - workshop-endpoints
+  summary: Fetch pages of workshops filtered by criteria.
+  operationId: searchWorkshops
+  parameters:
+    - $ref: "./coreParams.yml#/token"
+    - $ref: "./coreParams.yml#/status"
+    - $ref: "./coreParams.yml#/preferredField"
+    - $ref: "./coreParams.yml#/startDateTime"
+    - $ref: "./coreParams.yml#/endDateTime"
+  responses:
+    "200":
+      description: Found item structure.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "./schemas.yml#/WorkshopResponse"
+                
+    "400":
+      $ref: "./coreResponses.yml#/400APIError"
+    "409":
+      $ref: "./coreResponses.yml#/409APIError"
+    "500":
+      $ref: "./coreResponses.yml#/500APIError"
