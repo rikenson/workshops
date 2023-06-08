@@ -321,6 +321,8 @@ components:
             - DEVELOPER
             - FUNCTIONAL_ANALYST
             - ARCHITECT
+            - OTHER
+            - UNKNOWN
     ParticipantResponse:
       required:
         - firstname
@@ -343,6 +345,8 @@ components:
             - DEVELOPER
             - FUNCTIONAL_ANALYST
             - ARCHITECT
+            - OTHER
+            - UNKNOWN
   responses:
     500APIError:
       description: This is an unexpected error occurred.

@@ -89,6 +89,8 @@ ParticipantRequest:
         - DEVELOPER
         - FUNCTIONAL_ANALYST
         - ARCHITECT
+        - OTHER
+        - UNKNOWN
 
 
 ParticipantResponse:
@@ -113,3 +115,5 @@ ParticipantResponse:
         - DEVELOPER
         - FUNCTIONAL_ANALYST
         - ARCHITECT
+        - OTHER
+        - UNKNOWN
