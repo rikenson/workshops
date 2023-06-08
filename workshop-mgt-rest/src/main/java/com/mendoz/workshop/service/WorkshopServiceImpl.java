@@ -4,6 +4,7 @@ import com.mendoz.workshop.domain.entity.Participant;
 import com.mendoz.workshop.domain.entity.Workshop;
 import com.mendoz.workshop.domain.filter.WorkshopFilter;
 import com.mendoz.workshop.mapper.CustomMapper;
+import com.mendoz.workshop.payload.ParticipantRequest;
 import com.mendoz.workshop.payload.WorkshopRequest;
 import com.mendoz.workshop.payload.WorkshopResponse;
 import com.mendoz.workshop.repository.WorkshopRepository;
@@ -28,7 +29,7 @@ public class WorkshopServiceImpl implements WorkshopService {
     }
 
     @Override
-    public WorkshopResponse addParticipants(List<Participant> participants, UUID uuid) {
+    public WorkshopResponse addParticipants(List<ParticipantRequest> participants, UUID uuid) {
         return null;
     }
 
