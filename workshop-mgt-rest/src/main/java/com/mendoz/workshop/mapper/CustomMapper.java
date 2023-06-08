@@ -8,18 +8,20 @@ import com.mendoz.workshop.payload.ParticipantRequest;
 import com.mendoz.workshop.payload.ParticipantResponse;
 import com.mendoz.workshop.payload.WorkshopRequest;
 import com.mendoz.workshop.payload.WorkshopResponse;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.function.Function;
 
-public class WorkshopMapper {
+@Service
+public class CustomMapper {
 
 
     /**
      * @param request :
      * @return Workshop
      */
-    public Workshop toParticipantEntity(WorkshopRequest request) {
+    public Workshop toEntity(WorkshopRequest request) {
         return Workshop.builder()
                 .name(request.getName())
                 .description(request.getDescription())
