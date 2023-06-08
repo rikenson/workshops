@@ -49,7 +49,7 @@ delete:
       $ref: "./coreResponses.yml#/500APIError"
 
 #___________________________________________________________________________
-#1.Update Workshop
+#3.Update Workshop
 patch:
   tags:
     - workshop-endpoints
@@ -69,6 +69,32 @@ patch:
   responses:
     "200":
       description: Found item structure.
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas.yml#/WorkshopResponse"
+    "400":
+      $ref: "./coreResponses.yml#/400APIError"
+    "409":
+      $ref: "./coreResponses.yml#/409APIError"
+    "500":
+      $ref: "./coreResponses.yml#/500APIError"
+
+
+
+#___________________________________________________________________________
+#4.Find page of workshop
+get:
+  tags:
+    - workshop-endpoints
+  summary: Fetch a specific workshop.
+  operationId: searchCurrentWorkshop
+  parameters:
+    - $ref: "./coreParams.yml#/token"
+    - $ref: "./coreParams.yml#/id"
+  responses:
+    "200":
+      description: Found item by id.
       content:
         application/json:
           schema:

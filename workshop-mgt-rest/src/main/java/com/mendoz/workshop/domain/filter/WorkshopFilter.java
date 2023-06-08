@@ -16,6 +16,7 @@ public class WorkshopFilter {
     private WorkshopStatus status;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
+    @Builder.Default
     private String preferredField = PREFERRED_FIELD_VALUE ;
 }
 

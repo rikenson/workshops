@@ -3,10 +3,7 @@ package com.mendoz.workshop.domain.entity;
 import com.mendoz.workshop.domain.enums.ParticipantRole;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -15,5 +12,6 @@ import lombok.experimental.SuperBuilder;
 public class Participant extends BaseEntity {
     private String firstname;
     private String lastname;
+    @Builder.Default
     private ParticipantRole role = ParticipantRole.UNKNOWN;
 }
