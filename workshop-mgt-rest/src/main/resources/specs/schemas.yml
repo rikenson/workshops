@@ -51,10 +51,12 @@ WorkshopResponse:
       example: Workshop sur la mise en place des test unitaires...
     status:
       type: string
-      default: INACTIVE
+      default: PENDING
       enum:
-        - ACTIVE
-        - INACTIVE
+        - ENDED
+        - STARTED
+        - CANCELED
+        - PENDING
     startDateTime:
       type: string
       format: date-time
