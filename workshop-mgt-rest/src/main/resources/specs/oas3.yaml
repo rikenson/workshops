@@ -142,6 +142,27 @@ paths:
           $ref: '#/components/responses/409APIError'
         '500':
           $ref: '#/components/responses/500APIError'
+    get:
+      tags:
+        - workshop-endpoints
+      summary: Fetch a specific workshop.
+      operationId: searchCurrentWorkshop
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Found item by id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkshopResponse'
+        '400':
+          $ref: '#/components/responses/400APIError'
+        '409':
+          $ref: '#/components/responses/409APIError'
+        '500':
+          $ref: '#/components/responses/500APIError'
 components:
   securitySchemes:
     implicit:
@@ -285,10 +306,12 @@ components:
           example: Workshop sur la mise en place des test unitaires...
         status:
           type: string
-          default: INACTIVE
+          default: PENDING
           enum:
-            - ACTIVE
-            - INACTIVE
+            - ENDED
+            - STARTED
+            - CANCELED
+            - PENDING
         startDateTime:
           type: string
           format: date-time
@@ -330,7 +353,7 @@ components:
         - role
       type: object
       allOf:
-        - $ref: '#/components/schemas/WorkshopResponse'
+        - $ref: '#/components/schemas/WorkshopResponse/allOf/0'
       properties:
         firstname:
           type: string
