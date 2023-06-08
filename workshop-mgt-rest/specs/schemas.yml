@@ -1,0 +1,115 @@
+WorkshopRequest:
+  required:
+    - name
+    - description
+    - startDateTime
+    - endDateTime
+    - status
+  type: object
+  properties:
+    name:
+      type: string
+      example: Unit Testing
+    description:
+      type: string
+      example: Workshop sur la mise en place des test unitaires...
+    status:
+      type: string
+      default: PENDING
+      enum:
+        - ENDED
+        - STARTED
+        - CANCELED
+        - PENDING
+    startDateTime:
+      type: string
+      format: date-time
+      example: 2017-07-21T17:32:28.000Z
+    endDateTime:
+      type: string
+      format: date-time
+      example: 2017-07-21T17:32:28.000Z
+
+
+WorkshopResponse:
+  required:
+    - name
+    - description
+    - startDateTime
+    - endDateTime
+    - status
+    - participants
+  type: object
+  allOf:
+    - $ref: "./coreSchemas.yml#/Audit"
+  properties:
+    name:
+      type: string
+      example: USD
+    description:
+      type: string
+      example: Workshop sur la mise en place des test unitaires...
+    status:
+      type: string
+      default: INACTIVE
+      enum:
+        - ACTIVE
+        - INACTIVE
+    startDateTime:
+      type: string
+      format: date-time
+      example: 2017-07-21T17:32:28.000Z
+    endDateTime:
+      type: string
+      format: date-time
+      example: 2017-07-21T17:32:28.000Z
+    participants:
+      type: array
+      items:
+        $ref: "#/ParticipantResponse"
+
+
+ParticipantRequest:
+  required:
+    - firstname
+    - lastname
+    - role
+  type: object
+  properties:
+    firstname:
+      type: string
+      example: Wisly
+    lastname:
+      type: string
+      example: CLERVILUS
+    role:
+      type: string
+      default: UNKNOWN
+      enum:
+        - DEVELOPER
+        - FUNCTIONAL_ANALYST
+        - ARCHITECT
+
+
+ParticipantResponse:
+  required:
+    - firstname
+    - lastname
+    - role
+  type: object
+  allOf:
+    - $ref: "./coreSchemas.yml#/Audit"
+  properties:
+    firstname:
+      type: string
+      example: Wisly
+    lastname:
+      type: string
+      example: CLERVILUS
+    role:
+      type: string
+      default: UNKNOWN
+      enum:
+        - DEVELOPER
+        - FUNCTIONAL_ANALYST
+        - ARCHITECT
