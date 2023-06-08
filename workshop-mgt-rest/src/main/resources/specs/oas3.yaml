@@ -353,7 +353,7 @@ components:
         - role
       type: object
       allOf:
-        - $ref: '#/components/schemas/WorkshopResponse/allOf/0'
+        - $ref: '#/components/schemas/WorkshopResponse'
       properties:
         firstname:
           type: string
