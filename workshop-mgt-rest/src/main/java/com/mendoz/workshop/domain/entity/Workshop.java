@@ -11,7 +11,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @Entity
 @Table(name = "Team")
@@ -19,8 +22,9 @@ import java.util.Set;
 public class Workshop extends BaseEntity {
     private String name;
     private String description;
-    private String mascot;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
     private WorkshopStatus status = WorkshopStatus.PENDING;
     @OneToMany(cascade = CascadeType.DETACH)
-    private Set<Participant> players = new HashSet<>();
+    private List<Participant> participants = new ArrayList<>();
 }
