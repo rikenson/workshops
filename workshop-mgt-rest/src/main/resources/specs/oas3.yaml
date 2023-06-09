@@ -232,13 +232,13 @@ components:
         example: 283jebuiVIVEG&#G#UGFXVVWWVD#h3dndon3j0d1hd119hd&ywyw^YS
   schemas:
     WorkshopRequest:
+      type: object
       required:
         - name
         - description
         - startDateTime
         - endDateTime
         - status
-      type: object
       properties:
         name:
           type: string
@@ -263,6 +263,9 @@ components:
           format: date-time
           example: 2017-07-21T17:32:28.000Z
     WorkshopResponse:
+      allOf:
+        - $ref: '#/components/schemas/Audit'
+      type: object
       required:
         - name
         - description
@@ -270,33 +273,6 @@ components:
         - endDateTime
         - status
         - participants
-      type: object
-      allOf:
-        - allOf:
-            - type: object
-              properties:
-                id:
-                  type: string
-                  uniqueItems: true
-                  example: d815d301-8bae-4dd0-a292-56e0cb7509d6
-          type: object
-          properties:
-            createdAt:
-              type: string
-              format: date-time
-              example: 2017-07-21T17:32:28.000Z
-            updatedAt:
-              type: string
-              format: date-time
-              example: 2017-07-21T17:32:28.000Z
-            createdByUser:
-              type: string
-              uniqueItems: true
-              example: d815d301-8bae-4dd0-a292-56e0cb7509d6
-            modifiedByUser:
-              type: string
-              uniqueItems: true
-              example: d815d301-8bae-4dd0-a292-56e0cb7509d6
       properties:
         name:
           type: string
@@ -325,11 +301,11 @@ components:
           items:
             $ref: '#/components/schemas/ParticipantResponse'
     ParticipantRequest:
+      type: object
       required:
         - firstname
         - lastname
         - role
-      type: object
       properties:
         firstname:
           type: string
@@ -347,13 +323,13 @@ components:
             - OTHER
             - UNKNOWN
     ParticipantResponse:
+      allOf:
+        - $ref: '#/components/schemas/Audit'
+      type: object
       required:
         - firstname
         - lastname
         - role
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/WorkshopResponse'
       properties:
         firstname:
           type: string
@@ -370,6 +346,37 @@ components:
             - ARCHITECT
             - OTHER
             - UNKNOWN
+    Audit:
+      type: object
+      required:
+        - uuid
+        - version
+        - createdAt
+        - createdByUser
+      properties:
+        uuid:
+          type: string
+          uniqueItems: true
+          example: d815d301-8bae-4dd0-a292-56e0cb7509d6
+        version:
+          type: integer
+          example: 0
+        createdAt:
+          type: string
+          format: date-time
+          example: 2017-07-21T17:32:28.000Z
+        updatedAt:
+          type: string
+          format: date-time
+          example: 2017-07-21T17:32:28.000Z
+        createdByUser:
+          type: string
+          uniqueItems: true
+          example: d815d301-8bae-4dd0-a292-56e0cb7509d6
+        modifiedByUser:
+          type: string
+          uniqueItems: true
+          example: d815d301-8bae-4dd0-a292-56e0cb7509d6
   responses:
     500APIError:
       description: This is an unexpected error occurred.

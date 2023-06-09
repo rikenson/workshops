@@ -33,6 +33,8 @@ public class CustomMapper {
 
     public WorkshopResponse toResponse(Workshop entity) {
         var response = new WorkshopResponse();
+        response.setUuid(entity.getUuid().toString());
+        response.setVersion(entity.getVersion());
         response.setName(entity.getName());
         response.setStatus(WorkshopResponse.StatusEnum.valueOf(entity.getStatus().name()));
         response.setDescription(entity.getDescription());
@@ -61,7 +63,8 @@ public class CustomMapper {
 
     public ParticipantResponse toParticipantResponse(Participant entity) {
         var response = new ParticipantResponse();
-        response.setFirstname(entity.getFirstname());
+        response.setUuid(entity.getUuid().toString());
+        response.setVersion(entity.getVersion());
         response.setFirstname(entity.getFirstname());
         response.setLastname(entity.getLastname());
         response.setRole(ParticipantResponse.RoleEnum.valueOf(entity.getRole().name()));
