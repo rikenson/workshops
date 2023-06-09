@@ -37,7 +37,7 @@ class CustomMapperTest {
     }
 
     @Test
-    void mapWorkshopRequestToEntitySucceeded(WorkshopRequest request, WorkshopResponse response) {
+    void mapWorkshopRequest_To_Entity_Succeeded(WorkshopRequest request, WorkshopResponse response) {
 
         var ignoreFields = new String[]{"uuid", "createdAt", "modifiedAt", "createdByUser", "modifiedByUser", "version"};
         var underTest = mapperMock.toEntity(request);
@@ -48,7 +48,7 @@ class CustomMapperTest {
     }
 
     @Test
-    void mapWorkshopEntityToResponse(Workshop workshop, WorkshopResponse response) {
+    void mapWorkshopEntity_To_Response_Succeeded(Workshop workshop, WorkshopResponse response) {
 
         var underTest = mapperMock.toResponse(workshop);
         assertThat(underTest)
@@ -58,7 +58,7 @@ class CustomMapperTest {
     }
 
     @Test
-    void mapParticipantRequestToEntity(ParticipantRequest request, ParticipantResponse response) {
+    void mapParticipantRequest_To_Entity_Succeeded(ParticipantRequest request, ParticipantResponse response) {
         var ignoreFields = new String[]{"uuid", "createdAt", "modifiedAt", "createdByUser", "modifiedByUser", "version"};
         var underTest = mapperMock.toParticipantEntity(request);
         assertThat(underTest)
@@ -68,7 +68,7 @@ class CustomMapperTest {
     }
 
     @Test
-    void mapEntityToParticipantResponse(Participant request, ParticipantResponse response) {
+    void mapEntity_To_ParticipantResponse_Succeeded(Participant request, ParticipantResponse response) {
         var underTest = mapperMock.toParticipantResponse(request);
         assertThat(underTest)
                 .usingRecursiveComparison()

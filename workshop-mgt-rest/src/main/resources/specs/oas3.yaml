@@ -265,37 +265,11 @@ components:
     WorkshopResponse:
       allOf:
         - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/WorkshopRequest'
       type: object
       required:
-        - name
-        - description
-        - startDateTime
-        - endDateTime
-        - status
         - participants
       properties:
-        name:
-          type: string
-          example: USD
-        description:
-          type: string
-          example: Workshop sur la mise en place des test unitaires...
-        status:
-          type: string
-          default: PENDING
-          enum:
-            - ENDED
-            - STARTED
-            - CANCELED
-            - PENDING
-        startDateTime:
-          type: string
-          format: date-time
-          example: 2017-07-21T17:32:28.000Z
-        endDateTime:
-          type: string
-          format: date-time
-          example: 2017-07-21T17:32:28.000Z
         participants:
           type: array
           items:
@@ -325,27 +299,8 @@ components:
     ParticipantResponse:
       allOf:
         - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/ParticipantRequest'
       type: object
-      required:
-        - firstname
-        - lastname
-        - role
-      properties:
-        firstname:
-          type: string
-          example: Wisly
-        lastname:
-          type: string
-          example: CLERVILUS
-        role:
-          type: string
-          default: UNKNOWN
-          enum:
-            - DEVELOPER
-            - FUNCTIONAL_ANALYST
-            - ARCHITECT
-            - OTHER
-            - UNKNOWN
     Audit:
       type: object
       required:

@@ -10,6 +10,7 @@ public class Constants {
 
     public static final UUID UUID_VALUE = UUID.fromString("d815d301-8bae-4dd0-a292-56e0cb7509d6");
     public static final String WORKSHOP_NAME = "Unit Testing Essential Training";
+    public static final String UPDATED_WORKSHOP_NAME = "Unit Testing Essential Updated";
     public static final String WORKSHOP_DESCRIPTION = "Learn unit testing with JUnit, AssertJ, Mockito, Pitest";
     public static final WorkshopRequest.StatusEnum WORKSHOP_STATUS = WorkshopRequest.StatusEnum.PENDING;
 
