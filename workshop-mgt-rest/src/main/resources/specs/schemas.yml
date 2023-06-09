@@ -1,11 +1,12 @@
+$ref: "./coreSchemas.yml"
 WorkshopRequest:
+  type: object
   required:
     - name
     - description
     - startDateTime
     - endDateTime
     - status
-  type: object
   properties:
     name:
       type: string
@@ -32,6 +33,9 @@ WorkshopRequest:
 
 
 WorkshopResponse:
+  allOf:
+    - $ref: "#/Audit"
+  type: object
   required:
     - name
     - description
@@ -39,9 +43,6 @@ WorkshopResponse:
     - endDateTime
     - status
     - participants
-  type: object
-  allOf:
-    - $ref: "./coreSchemas.yml#/Audit"
   properties:
     name:
       type: string
@@ -72,11 +73,11 @@ WorkshopResponse:
 
 
 ParticipantRequest:
+  type: object
   required:
     - firstname
     - lastname
     - role
-  type: object
   properties:
     firstname:
       type: string
@@ -96,13 +97,13 @@ ParticipantRequest:
 
 
 ParticipantResponse:
+  allOf:
+    - $ref: "#/Audit"
+  type: object
   required:
     - firstname
     - lastname
     - role
-  type: object
-  allOf:
-    - $ref: "./coreSchemas.yml#/Audit"
   properties:
     firstname:
       type: string

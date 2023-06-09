@@ -1,16 +1,18 @@
-Identity:
+Audit:
   type: object
+  required:
+    - uuid
+    - version
+    - createdAt
+    - createdByUser
   properties:
-    id:
+    uuid:
       type: string
       uniqueItems: true
       example: d815d301-8bae-4dd0-a292-56e0cb7509d6
-
-Audit:
-  allOf:
-    - $ref: "#/Identity"
-  type: object
-  properties:
+    version:
+      type: integer
+      example: 0
     createdAt:
       type: string
       format: date-time
