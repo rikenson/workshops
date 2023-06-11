@@ -7,26 +7,26 @@ put:
   operationId: updateWorkshop
   security: [ ]
   parameters:
-    - $ref: "./coreParams.yml#/token"
-    - $ref: "./coreParams.yml#/id"
+    - $ref: "../parameters/common.yml#/token"
+    - $ref: "../parameters/common.yml#/id"
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "./schemas.yml#/WorkshopRequest"
+          $ref: "../schemas/workshop.yml#/UpdatedWorkshopRequest"
   responses:
     "200":
       description: Found item structure.
       content:
         application/json:
           schema:
-            $ref: "./schemas.yml#/WorkshopResponse"
+            $ref: "../schemas/workshop.yml#/WorkshopResponse"
     "400":
-      $ref: "./coreResponses.yml#/400APIError"
+      $ref: "../responses/common.yml#/400APIError"
     "409":
-      $ref: "./coreResponses.yml#/409APIError"
+      $ref: "../responses/common.yml#/409APIError"
     "500":
-      $ref: "./coreResponses.yml#/500APIError"
+      $ref: "../responses/common.yml#/500APIError"
 
 # #___________________________________________________________________________
 #3.Delete Workshop
@@ -36,17 +36,17 @@ delete:
   summary: Delete a specific workshop by id.
   operationId: deleteWorkshop
   parameters:
-    - $ref: "./coreParams.yml#/token"
-    - $ref: "./coreParams.yml#/id"
+    - $ref: "../parameters/common.yml#/token"
+    - $ref: "../parameters/common.yml#/id"
   responses:
     "200":
-      $ref: "./coreResponses.yml#/200APIMessage"
+      $ref: "../responses/common.yml#/200APIMessage"
     "400":
-      $ref: "./coreResponses.yml#/400APIError"
+      $ref: "../responses/common.yml#/400APIError"
     "409":
-      $ref: "./coreResponses.yml#/409APIError"
+      $ref: "../responses/common.yml#/409APIError"
     "500":
-      $ref: "./coreResponses.yml#/500APIError"
+      $ref: "../responses/common.yml#/500APIError"
 
 #___________________________________________________________________________
 #3.Update Workshop
@@ -57,28 +57,28 @@ patch:
   operationId: patchWorkshop
   security: [ ]
   parameters:
-    - $ref: "./coreParams.yml#/token"
-    - $ref: "./coreParams.yml#/id"
+    - $ref: "../parameters/common.yml#/token"
+    - $ref: "../parameters/common.yml#/id"
   requestBody:
     content:
       application/json:
         schema:
           type: array
           items:
-            $ref: "./schemas.yml#/ParticipantRequest"
+            $ref: "../schemas/participant.yml#/ParticipantRequest"
   responses:
     "200":
       description: Found item structure.
       content:
         application/json:
           schema:
-            $ref: "./schemas.yml#/WorkshopResponse"
+            $ref: "../schemas/workshop.yml#/WorkshopResponse"
     "400":
-      $ref: "./coreResponses.yml#/400APIError"
+      $ref: "../responses/common.yml#/400APIError"
     "409":
-      $ref: "./coreResponses.yml#/409APIError"
+      $ref: "../responses/common.yml#/409APIError"
     "500":
-      $ref: "./coreResponses.yml#/500APIError"
+      $ref: "../responses/common.yml#/500APIError"
 
 
 
@@ -90,18 +90,18 @@ get:
   summary: Fetch a specific workshop.
   operationId: searchCurrentWorkshop
   parameters:
-    - $ref: "./coreParams.yml#/token"
-    - $ref: "./coreParams.yml#/id"
+    - $ref: "../parameters/common.yml#/token"
+    - $ref: "../parameters/common.yml#/id"
   responses:
     "200":
       description: Found item by id.
       content:
         application/json:
           schema:
-            $ref: "./schemas.yml#/WorkshopResponse"
+            $ref: "../schemas/workshop.yml#/WorkshopResponse"
     "400":
-      $ref: "./coreResponses.yml#/400APIError"
+      $ref: "../responses/common.yml#/400APIError"
     "409":
-      $ref: "./coreResponses.yml#/409APIError"
+      $ref: "../responses/common.yml#/409APIError"
     "500":
-      $ref: "./coreResponses.yml#/500APIError"
+      $ref: "../responses/common.yml#/500APIError"

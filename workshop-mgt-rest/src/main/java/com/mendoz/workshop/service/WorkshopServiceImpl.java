@@ -5,6 +5,7 @@ import com.mendoz.workshop.domain.entity.Workshop;
 import com.mendoz.workshop.domain.filter.WorkshopFilter;
 import com.mendoz.workshop.mapper.CustomMapper;
 import com.mendoz.workshop.payload.ParticipantRequest;
+import com.mendoz.workshop.payload.UpdatedWorkshopRequest;
 import com.mendoz.workshop.payload.WorkshopRequest;
 import com.mendoz.workshop.payload.WorkshopResponse;
 import com.mendoz.workshop.repository.WorkshopRepository;
@@ -24,7 +25,7 @@ public class WorkshopServiceImpl implements WorkshopService {
     }
 
     @Override
-    public WorkshopResponse edit(WorkshopRequest request, UUID uuid) {
+    public WorkshopResponse edit(UpdatedWorkshopRequest request, UUID uuid) {
         return null;
     }
 
@@ -50,7 +51,6 @@ public class WorkshopServiceImpl implements WorkshopService {
 
     @Override
     public void remove(UUID uuid) {
-        // TODO document why this method is empty
     }
 
 

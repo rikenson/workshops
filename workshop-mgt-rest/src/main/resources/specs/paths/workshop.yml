@@ -7,25 +7,25 @@ post:
   operationId: addWorkshop
   description: Add a brand new workshop
   parameters:
-    - $ref: "./coreParams.yml#/token"
+    - $ref: "../parameters/common.yml#/token"
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "./schemas.yml#/WorkshopRequest"
+          $ref: "../schemas/workshop.yml#/WorkshopRequest"
   responses:
     "201":
       description: Item created successfully.
       content:
         application/json:
           schema:
-            $ref: "./schemas.yml#/WorkshopResponse"
+            $ref: "../schemas/workshop.yml#/WorkshopResponse"
     "400":
-      $ref: "./coreResponses.yml#/400APIError"
+      $ref: "../responses/common.yml#/400APIError"
     "409":
-      $ref: "./coreResponses.yml#/409APIError"
+      $ref: "../responses/common.yml#/409APIError"
     "500":
-      $ref: "./coreResponses.yml#/500APIError"
+      $ref: "../responses/common.yml#/500APIError"
 
 #___________________________________________________________________________
 #4.Find page of workshop
@@ -35,11 +35,11 @@ get:
   summary: Fetch pages of workshops filtered by criteria.
   operationId: searchWorkshops
   parameters:
-    - $ref: "./coreParams.yml#/token"
-    - $ref: "./coreParams.yml#/status"
-    - $ref: "./coreParams.yml#/preferredField"
-    - $ref: "./coreParams.yml#/startDateTime"
-    - $ref: "./coreParams.yml#/endDateTime"
+    - $ref: "../parameters/common.yml#/token"
+    - $ref: "../parameters/common.yml#/status"
+    - $ref: "../parameters/common.yml#/preferredField"
+    - $ref: "../parameters/common.yml#/startDateTime"
+    - $ref: "../parameters/common.yml#/endDateTime"
   responses:
     "200":
       description: Found item structure.
@@ -48,11 +48,11 @@ get:
           schema:
             type: array
             items:
-              $ref: "./schemas.yml#/WorkshopResponse"
-                
+              $ref: "../schemas/workshop.yml#/WorkshopResponse"
+
     "400":
-      $ref: "./coreResponses.yml#/400APIError"
+      $ref: "../responses/common.yml#/400APIError"
     "409":
-      $ref: "./coreResponses.yml#/409APIError"
+      $ref: "../responses/common.yml#/409APIError"
     "500":
-      $ref: "./coreResponses.yml#/500APIError"
+      $ref: "../responses/common.yml#/500APIError"

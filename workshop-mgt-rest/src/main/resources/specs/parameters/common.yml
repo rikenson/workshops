@@ -49,6 +49,7 @@ id:
   schema:
     type: string
     example: d815d301-8bae-4dd0-a292-56e0cb7509d6
+
 token:
   in: header
   name: token
@@ -57,3 +58,12 @@ token:
   schema:
     type: string
     example: 283jebuiVIVEG&#G#UGFXVVWWVD#h3dndon3j0d1hd119hd&ywyw^YS
+
+participantId:
+  in: path
+  name: participantId
+  description: Current participant ID.
+  required: true
+  schema:
+    type: string
+    example: d815d301-8bae-4dd0-a292-56e0cb7509d8

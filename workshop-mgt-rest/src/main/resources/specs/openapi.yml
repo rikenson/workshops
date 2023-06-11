@@ -16,12 +16,18 @@ info:
 tags:
   - name: workshop-endpoints
     description: Operations on base workshop entities
+  - name: participant-endpoints
+    description: Operations on base participants entities
 
 paths:
   /v1/workshops:
-    $ref: "./endpoints.yml"
+    $ref: "./paths/workshop.yml"
   /v1/workshops/{id}:
-    $ref: "./endpoints-vars.yml"
+    $ref: "./paths/workshop-vars.yml"
+  /v1/workshops/participants/{id}/{participantId}:
+    $ref: "./paths/participant.yml"
+  /v1/workshops/participants/{id}:
+    $ref: "./paths/participant-vars.yml"
 
 components:
   securitySchemes:
@@ -34,8 +40,8 @@ components:
             write: allows modifying resources
             read: allows reading resources
   parameters:
-    $ref: "./coreParams.yml"
+    $ref: "./parameters/common.yml"
   schemas:
-    $ref: "./schemas.yml"
+    $ref: "./schemas/workshop.yml"
   responses:
-    $ref: "./coreResponses.yml"
+    $ref: "./responses/common.yml"
