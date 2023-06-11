@@ -1,6 +1,6 @@
 package com.mendoz.workshop.paramResolver;
 
-import com.mendoz.workshop.payload.WorkshopResponse;
+import com.mendoz.workshop.payload.UpdatedParticipantRequest;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
@@ -8,25 +8,23 @@ import org.junit.jupiter.api.extension.ParameterResolver;
 
 import static com.mendoz.workshop.utils.Constants.*;
 
-public class WorkshopResponseParameterResolver implements ParameterResolver {
+
+public class UdatedParticipantRequestParameterResolver implements ParameterResolver {
     @Override
     public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
             throws ParameterResolutionException {
-        return parameterContext.getParameter().getType() == WorkshopResponse.class;
+        return parameterContext.getParameter().getType() == UpdatedParticipantRequest.class;
     }
 
     @Override
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
             throws ParameterResolutionException {
-        var model = new WorkshopResponse();
 
+        var model = new UpdatedParticipantRequest();
         model.setUuid(UUID_VALUE.toString());
-        model.setVersion(VERSION);
-        model.setName(WORKSHOP_NAME);
-        model.setDescription(WORKSHOP_DESCRIPTION);
-        model.setStatus(WorkshopResponse.StatusEnum.valueOf(WORKSHOP_STATUS.getValue()));
-        model.setStartDateTime(WORKSHOP_START_DATE_TIME);
-        model.setEndDateTime(WORKSHOP_END_DATE_TIME);
+        model.setFirstname(PARTICIPANT_FIRST_NAME);
+        model.setLastname(PARTICIPANT_LAST_NAME);
+        model.setRole(UPDATED_PARTICIPANT_ROLE);
         model.setCreatedByUser(CREATE_BY_USER);
         model.setModifiedByUser(MODIFIED_BY_USER);
         model.setCreatedAt(CREATED_DATE_TIME);

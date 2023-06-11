@@ -1,6 +1,7 @@
 package com.mendoz.workshop.handler;
 
 import com.mendoz.workshop.payload.ParticipantRequest;
+import com.mendoz.workshop.payload.UpdatedWorkshopRequest;
 import com.mendoz.workshop.payload.WorkshopRequest;
 import com.mendoz.workshop.payload.WorkshopResponse;
 import com.mendoz.workshop.service.WorkshopService;
@@ -30,7 +31,7 @@ public class WorkshopHandler {
 
     @PutMapping("{uuid}")
     public ResponseEntity<WorkshopResponse> workshopEdit(
-            @RequestBody @Validated WorkshopRequest request,
+            @RequestBody @Validated UpdatedWorkshopRequest request,
             @PathVariable("uuid") UUID uuid) {
         return ResponseEntity.ok(service.edit(request, uuid));
     }

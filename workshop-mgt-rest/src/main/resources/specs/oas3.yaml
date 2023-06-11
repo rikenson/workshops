@@ -14,6 +14,8 @@ info:
 tags:
   - name: workshop-endpoints
     description: Operations on base workshop entities
+  - name: participant-endpoints
+    description: Operations on base participants entities
 paths:
   /v1/workshops:
     post:
@@ -82,7 +84,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WorkshopRequest'
+              $ref: '#/components/schemas/UpdatedWorkshopRequest'
       responses:
         '200':
           description: Found item structure.
@@ -128,7 +130,27 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/ParticipantRequest'
+                type: object
+                required:
+                  - firstname
+                  - lastname
+                  - role
+                properties:
+                  firstname:
+                    type: string
+                    example: Wisly
+                  lastname:
+                    type: string
+                    example: CLERVILUS
+                  role:
+                    type: string
+                    default: UNKNOWN
+                    enum:
+                      - DEVELOPER
+                      - FUNCTIONAL_ANALYST
+                      - ARCHITECT
+                      - OTHER
+                      - UNKNOWN
       responses:
         '200':
           description: Found item structure.
@@ -157,6 +179,83 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkshopResponse'
+        '400':
+          $ref: '#/components/responses/400APIError'
+        '409':
+          $ref: '#/components/responses/409APIError'
+        '500':
+          $ref: '#/components/responses/500APIError'
+  '/v1/workshops/participants/{id}/{participantId}':
+    put:
+      tags:
+        - participant-endpoints
+      summary: Update a specific participant by id.
+      operationId: updateParticipant
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/participantId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Audit'
+                - $ref: '#/components/schemas/ParticipantRequest'
+              type: object
+      responses:
+        '200':
+          description: Found item structure.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Audit'
+                  - $ref: '#/components/schemas/ParticipantRequest'
+                type: object
+        '400':
+          $ref: '#/components/responses/400APIError'
+        '409':
+          $ref: '#/components/responses/409APIError'
+        '500':
+          $ref: '#/components/responses/500APIError'
+    delete:
+      tags:
+        - participant-endpoints
+      summary: Delete a specific participant by id.
+      operationId: deleteParticipant
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/participantId'
+      responses:
+        '200':
+          $ref: '#/components/responses/200APIMessage'
+        '400':
+          $ref: '#/components/responses/400APIError'
+        '409':
+          $ref: '#/components/responses/409APIError'
+        '500':
+          $ref: '#/components/responses/500APIError'
+  '/v1/workshops/participants/{id}':
+    get:
+      tags:
+        - participant-endpoints
+      summary: Find all participants for a specific workspace.
+      operationId: searchCurrentParticipant
+      parameters:
+        - $ref: '#/components/parameters/token'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Found item by id.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/paths/~1v1~1workshops~1participants~1%7Bid%7D~1%7BparticipantId%7D/put/responses/200/content/application~1json/schema'
         '400':
           $ref: '#/components/responses/400APIError'
         '409':
@@ -230,6 +329,14 @@ components:
       schema:
         type: string
         example: 283jebuiVIVEG&#G#UGFXVVWWVD#h3dndon3j0d1hd119hd&ywyw^YS
+    participantId:
+      in: path
+      name: participantId
+      description: Current participant ID.
+      required: true
+      schema:
+        type: string
+        example: d815d301-8bae-4dd0-a292-56e0cb7509d8
   schemas:
     WorkshopRequest:
       type: object
@@ -262,6 +369,11 @@ components:
           type: string
           format: date-time
           example: 2017-07-21T17:32:28.000Z
+    UpdatedWorkshopRequest:
+      allOf:
+        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/WorkshopRequest'
+      type: object
     WorkshopResponse:
       allOf:
         - $ref: '#/components/schemas/Audit'
@@ -296,6 +408,11 @@ components:
             - ARCHITECT
             - OTHER
             - UNKNOWN
+    UpdatedParticipantRequest:
+      allOf:
+        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/ParticipantRequest'
+      type: object
     ParticipantResponse:
       allOf:
         - $ref: '#/components/schemas/Audit'

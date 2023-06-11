@@ -1,4 +1,4 @@
-$ref: "./coreSchemas.yml"
+$ref: "./participant.yml"
 WorkshopRequest:
   type: object
   required:
@@ -32,6 +32,13 @@ WorkshopRequest:
       example: 2017-07-21T17:32:28.000Z
 
 
+UpdatedWorkshopRequest:
+  allOf:
+    - $ref: "#/Audit"
+    - $ref: "#/WorkshopRequest"
+  type: object
+
+
 WorkshopResponse:
   allOf:
     - $ref: "#/Audit"
@@ -44,34 +51,3 @@ WorkshopResponse:
       type: array
       items:
         $ref: "#/ParticipantResponse"
-
-
-ParticipantRequest:
-  type: object
-  required:
-    - firstname
-    - lastname
-    - role
-  properties:
-    firstname:
-      type: string
-      example: Wisly
-    lastname:
-      type: string
-      example: CLERVILUS
-    role:
-      type: string
-      default: UNKNOWN
-      enum:
-        - DEVELOPER
-        - FUNCTIONAL_ANALYST
-        - ARCHITECT
-        - OTHER
-        - UNKNOWN
-
-
-ParticipantResponse:
-  allOf:
-    - $ref: "#/Audit"
-    - $ref: "#/ParticipantRequest"
-  type: object
