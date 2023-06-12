@@ -1,14 +1,9 @@
 package com.mendoz.workshop.handler;
 
 import com.mendoz.workshop.paramResolver.*;
-import com.mendoz.workshop.payload.UpdatedWorkshopRequest;
-import com.mendoz.workshop.payload.WorkshopRequest;
-import com.mendoz.workshop.payload.WorkshopResponse;
+import com.mendoz.workshop.payload.*;
 import com.mendoz.workshop.service.WorkshopService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -18,11 +13,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import static com.mendoz.workshop.utils.Constants.UPDATED_WORKSHOP_NAME;
 import static com.mendoz.workshop.utils.Constants.UUID_VALUE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
@@ -85,19 +83,71 @@ class WorkshopHandlerTest {
         assertThat(Objects.requireNonNull(underTest.getBody()).getUpdatedAt()).isAfter(request.getUpdatedAt());
     }
 
-    @Test @Disabled
-    void addParticipants() {
+    @Test
+    @DisplayName("Add participants to a specific workshop succeeded -> Status: 200")
+    void add_participants_to_specific_workshop_succeeded(
+            ParticipantRequest participantRequest,
+            ParticipantResponse participantResponse,
+            WorkshopResponse response) {
+
+        response.addParticipantsItem(participantResponse);
+        when(mockWorkshopService.addParticipants(List.of(participantRequest), UUID_VALUE)).thenReturn(response);
+        var underTest = workshopHandler.addParticipants(List.of(participantRequest), UUID_VALUE);
+        verify(mockWorkshopService, times(1)).addParticipants(List.of(participantRequest), UUID_VALUE);
+
+        assertThat(underTest.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(underTest.getBody())
+                .usingRecursiveComparison()
+                .isEqualTo(response);
+        assertThat(Objects.requireNonNull(underTest.getBody()).getParticipants()).isNotNull();
     }
 
-    @Test @Disabled
-    void workshopRetrieve() {
+
+    @Test
+    @DisplayName("Retrieve all workshops succeeded -> Status: 200")
+    void read_all_workshops_succeeded(WorkshopResponse response) {
+
+        var resp = List.of(response);
+        when(mockWorkshopService.retrieveAll()).thenReturn(resp);
+        var underTest = workshopHandler.workshopRetrieveAll();
+        verify(mockWorkshopService, times(1)).retrieveAll();
+
+        assertThat(underTest.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(underTest.getBody())
+                .usingRecursiveComparison()
+                .isEqualTo(resp);
     }
 
-    @Test @Disabled
-    void workshopRetrieveAll() {
+
+    @Test
+    @DisplayName("Read a specific workshop by id succeeded -> Status: 200")
+    void read_a_specific_workshop_by_id_succeeded(WorkshopResponse response) {
+
+        when(mockWorkshopService.retrieve(UUID_VALUE)).thenReturn(response);
+        var underTest = workshopHandler.workshopRetrieve(UUID_VALUE);
+        verify(mockWorkshopService, times(1)).retrieve(UUID_VALUE);
+        assertThat(underTest.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(underTest.getBody()).isEqualTo(response);
     }
 
-    @Test @Disabled
-    void remove() {
+
+    @Test
+    @DisplayName("Remove a specific workshop by id succeeded -> Status: 200")
+    void remove_specific_workshop_by_id_succeed() {
+
+        var underTest = workshopHandler.remove(UUID_VALUE);
+        verify(mockWorkshopService, times(1)).remove(UUID_VALUE);
+        assertThat(underTest.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(underTest.getBody()).isNull();
     }
+
+//    @Test
+//    @DisplayName("Remove a specific workshop by id failed -> Status: 200")
+//    void remove_specific_workshop_by_id_failed() {
+//        var currentId = UUID.randomUUID();
+//        var underTest = workshopHandler.remove(currentId);
+//        verify(mockWorkshopService, times(1)).remove(currentId);
+//        doThrow(new RuntimeException()).when(mockWorkshopService).remove(currentId);
+//        assertThat(underTest.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }
