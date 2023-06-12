@@ -121,7 +121,7 @@
                             <generatorName>spring</generatorName>
                             <modelPackage>${default.package}.payload</modelPackage>
                             <apiPackage>${default.package}.handler</apiPackage>
-                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <generateSupportingFiles>false</generateSupportingFiles>
                             <generateApis>false</generateApis>
                             <additionalProperties>serializableModel=true</additionalProperties>
                             <configOptions>
