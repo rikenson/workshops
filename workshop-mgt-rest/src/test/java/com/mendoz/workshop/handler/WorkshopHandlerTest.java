@@ -15,12 +15,10 @@ import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 import static com.mendoz.workshop.utils.Constants.UPDATED_WORKSHOP_NAME;
 import static com.mendoz.workshop.utils.Constants.UUID_VALUE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
